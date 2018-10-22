@@ -8,6 +8,7 @@ print(np.version.version)
 """
 1.15.2
 """
+print(np._config_.show())
 
 #3. Generate a 2x3x5 3-dimensional array with random values. Assign the array to variable "a"
 # Challenge: there are at least three easy ways that use numpy to generate random arrays. How many ways can you find?
@@ -70,6 +71,11 @@ d_max = np.max(d)
 d_min = np.min(d)
 d_mean = np.mean(d)
 
+#SOLUTION IN CLASS WITH MARC
+
+# d_data = (np.min(d), np.max(d), np.mean(d))
+# (min,max,mean) = d_data
+
 #15. Now we want to label the values in d. First create an empty array "f" with the same shape (i.e. 2x3x5) as d using `np.empty`.
 
 f = np.empty((2,3,5))
@@ -97,6 +103,22 @@ for a0, block in enumerate(d):
                                 f[a0,a1,a2] = 25
                         if (d[a0,a1,a2] > d_mean) and (d[a0,a1,a2] < d_max):
                                 f[a0,a1,a2] = 75
+
+#SOLUTION IN CLASS WITH MARC
+
+# d_min = (d != min) * d OR d_min = np.zeroes(d.shape)
+# d_min_mean = (d > min) * (d < mean) * 25
+# d_mean = (d == mean) * 50
+# d_max_mean = (d < max) * (d > mean) * 75
+# d_max = (d == max) * 100
+# print(d_min + d_min_mean + d_mean + d_max_mean + d_max)
+
+# f = np.empty((2,3,5))
+# f[d<d_mean]=25
+# f[d>d_mean]=75
+# f[d==d_min]=0
+# f[d==d_mean]=50
+# f[d==d_max]=100
 
 """
 #17. Print d and f. Do you have your expected f?

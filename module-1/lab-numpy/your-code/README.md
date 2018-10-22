@@ -12,13 +12,17 @@ import numpy as np
 ## #2 
 **Print the NUMPY version and the configuration.**
 
-Used the following code in Python:
+Used the following code in Python to get the version:
 ```
 print(np.version.version) 
 ```
 ```
 Output:
 1.15.2
+```
+Used the following code in Python to get the configuration:
+```
+print(np._config_.show())
 ```
 
 ## #3
@@ -111,7 +115,10 @@ Used the following code in Python:
 ```
 c = np.transpose(b,(1,2,0))
 ```
-
+or
+```
+c = np.reshape(b,(2,3,5))
+```
 
 ## #10
 **Try to add a and c. Now it should work. Assign the sum to varialbe "d". But why does it work now?**
@@ -162,7 +169,11 @@ d_max = np.max(d)
 d_min = np.min(d)
 d_mean = np.mean(d)
 ```
-
+Solution in class with Marc:
+```
+d_data = (np.min(d), np.max(d), np.mean(d))
+(min,max,mean) = d_data
+```
 
 ## #15
 **Now we want to label the values in d. First create an empty array "f" with the same shape (i.e. 2x3x5) as d using `np.empty`.**
@@ -196,7 +207,24 @@ for a0, block in enumerate(d):
                     f[a0,a1,a2] = 25
              if (d[a0,a1,a2] > d_mean) and (d[a0,a1,a2] < d_max):
                     f[a0,a1,a2] = 75
- ```
+```
+Solution in class with Marc:
+```
+d_min = (d != min) * d OR d_min = np.zeroes(d.shape)
+d_min_mean = (d > min) * (d < mean) * 25
+d_mean = (d == mean) * 50
+d_max_mean = (d < max) * (d > mean) * 75
+d_max = (d == max) * 100
+print(d_min + d_min_mean + d_mean + d_max_mean + d_max)
+```
+```
+f = np.empty((2,3,5))
+f[d<d_mean]=25
+f[d>d_mean]=75
+f[d==d_min]=0
+f[d==d_mean]=50
+f[d==d_max]=100
+```
 
 
 ## #17
