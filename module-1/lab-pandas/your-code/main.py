@@ -1,29 +1,41 @@
 #1. Import the PANDAS package under the name pd. Import the NUMPY package under the name np
 
+import pandas as pd
+import numpy as np
 
 #2. Define a variable called `url` that contains the path to the csv file you downloaded. 
+
+url = pd.read_csv('apple_store.csv')
+
 # Alternatively, you can also assign the hyperlink value to `url`.
 
+## url = "https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/data-static/data/apple_store.csv"
 
 #3. Using Pandas' `read_csv()` method, import the csv file at the url above. 
 # Assign the returned value to a variable called `data`.
 # Note: you can omit the `sep` parameter for `read_csv()` because the csv file uses the default separator of ",".
 
+data = pd.read_csv('apple_store.csv')
+
+## data = pd.read_csv(url)
 
 #4. Print the first 5 rows of `data` to see what the data look like.
 # A data analyst usually does this to have a general understanding about what the data look like before digging deep.
 
-"""
-          id                                         track_name  size_bytes      ...       user_rating  user_rating_ver   prime_genre
-0  281656475                                    PAC-MAN Premium   100788224      ...               4.0              4.5         Games
-1  281796108                          Evernote - stay organized   158578688      ...               4.0              3.5  Productivity
-2  281940292    WeatherBug - Local Weather, Radar, Maps, Alerts   100524032      ...               3.5              4.5       Weather
-3  282614216  eBay: Best App to Buy, Sell, Save! Online Shop...   128512000      ...               4.0              4.5      Shopping
-4  282935706                                              Bible    92774400      ...               4.5              5.0     Reference
-"""
+data.head()
 
+"""
+	id	track_name	size_bytes	price	rating_count_tot	rating_count_ver	user_rating	user_rating_ver	prime_genre
+0	281656475	PAC-MAN Premium	100788224	3.99	21292	26	4.0	4.5	Games
+1	281796108	Evernote - stay organized	158578688	0.00	161065	26	4.0	3.5	Productivity
+2	281940292	WeatherBug - Local Weather, Radar, Maps, Alerts	100524032	0.00	188583	2822	3.5	4.5	Weather
+3	282614216	eBay: Best App to Buy, Sell, Save! Online Shop...	128512000	0.00	262241	649	4.0	4.5	Shopping
+4	282935706	Bible	92774400	0.00	985920	5320	4.5	5.0	Reference
+"""
 
 #5.  Print the summary (info) of the data.
+
+data.info()
 
 """
 <class 'pandas.core.frame.DataFrame'>
@@ -42,23 +54,24 @@ dtypes: float64(3), int64(4), object(2)
 memory usage: 506.1+ KB
 """
 
-
 #6 Print the number of columns in the data.
 
+data.shape
+
 """
+(7197, 9)
 9
 """
 
-
 #7. Print all column names.
 
+data.columns
+
 """
-Index([u'id', u'track_name', u'size_bytes', u'price', u'rating_count_tot',
-       u'rating_count_ver', u'user_rating', u'user_rating_ver',
-       u'prime_genre'],
+Index(['id', 'track_name', 'size_bytes', 'price', 'rating_count_tot',
+       'rating_count_ver', 'user_rating', 'user_rating_ver', 'prime_genre'],
       dtype='object')
 """
-
 
 # Now that we have a general understanding of the data, we'll start working on the challenge questions.
 
@@ -67,39 +80,66 @@ Index([u'id', u'track_name', u'size_bytes', u'price', u'rating_count_tot',
 #8. Print the # of observations of the data.
 # Your code should return the number 7197.
 
+data['id'].count()
+
+"""
+7197
+"""
 
 # Q2: What is the average rating of all apps?
 
 #9. First, read the `user_rating` column into a varialbe named `user_rating`.
+# Define 'user rating'
 
+user_rating = data['user_rating']
 
 #10. Now you can calculate the average of the `user_rating` data.
 # Your code should return 3.526955675976101
 
+print(user_rating.mean())
+
+"""
+3.526955675976101
+"""
 
 # Q3: How many apps have an average rating no less than 4?
 
 #11. First, filter `user_rating` where its value >= 4. 
 # Assign the filtered dataframe to a new variable called `user_rating_high`.
 
+user_rating_high = data[data['user_rating'] >=4]
 
 #12. Now obtain the length of `user_rating_high` which should return 4781.
+len(user_rating_high)
 
+"""
+4781
+"""
 
 # Of course you don't have to define `user_rating_high` because you only use it once.
 # You can directly print the length of the filtered dataframe if you want.
+
+## len(data[data['user_rating']>=4])
 
 
 # Q4: How many genres are there in total for all the apps?
 
 #12. Define a new varialbe named `genres` that contains the `prime_genre` column of `data`.
 
+genres = data['prime_genre']
 
 #13. Google for how to obtain unique values of a dataframe column. 
 # Print the length of the unique values of `genres`. Your code should return 23.
 
+len(genres.unique())
+
+"""
+23
+"""
 
 # Q5: What are the top 3 genres that have the most number of apps?
+
+genres.value_counts()
 
 """
 14. What you want to do is to count the number of occurrences of each unique genre values.
@@ -113,8 +153,11 @@ Education         453
 Name: prime_genre, dtype: int64
 """
 
-
 # Q6. Which genre is most likely to contain free apps?
+
+free_apps = data[data['price'] == 0.00]
+# PENDIENTE AQUI
+# --> GOOGLE PARA VER COMO JUNTAT DOS COLUMNAS EN PANDAD
 
 """
 15. First, filter `data` where the price is 0.00. Assign the filtered data to a new variable called `free_apps`.
