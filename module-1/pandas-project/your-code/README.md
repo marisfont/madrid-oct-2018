@@ -44,9 +44,21 @@ data = pd.read_csv('countries of the world.csv')
 
 ## Examine the Data Set
 
-- I used the following command to get a 'sneak peak' of the Data Set
+- I printed the first five rows of 'data' to get a general idea of the data set.
 ```
 data.head()
 ```
 
-- I used the following commanda to get 
+- I printed the summary information to further understand the composition of the data set.
+```
+data.info()
+```
+
+- I created and printed the variable 'null_cols' to understand which columns had missing values.
+```
+null_cols = data.isnull().sum()
+print(null_cols)
+```
+
+
+## 
