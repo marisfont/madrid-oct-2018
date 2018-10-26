@@ -9,7 +9,7 @@ print(my_listComprehension)
 #Insert here the module/library import statements 
 
 import math
-
+import os 
 
 #1. Calculate the square number of the first 20 numbers. Use square as the name of the list.
 # Remember to use list comprehensions and to print your results
@@ -53,30 +53,34 @@ print(divisible_by_seven)
 # You can use the following test string but feel free to modify at your convenience
 
 teststring = 'Find all of the words in a string that are monosyllabic'
-
-
-
+non_vowels = ''.join([i for i in teststring if not i in 'aeiouAEIOU'])
+print(non_vowels)
 
 #8. Find the capital letters (and not white space) in the sentence 'The Quick Brown Fox Jumped Over The Lazy Dog'. 
 # Use capital_letters as the name of the list.  
 # Remember to use list comprehensions and to print your results
 
-
-
+teststring2 = 'The Quick Brown Fox Jumped Over The Lazy Dog'
+capital_letters = [i for i in teststring2 if i in 'TQBFJOTLD']
+print(capital_letters)
 
 #9. Find all the consonants in the sentence 'The quick brown fox jumped over the lazy dog'.
 # Use consonants as the name of the list.
 # Remember to use list comprehensions and to print your results.
 
-
-
-
+teststring3 = 'The quick brown fox jumped over the lazy dog'
+consonants = ''.join([i for i in teststring3 if i in 'bcdfghjklmnpqrstvwxyzT'])
+print(consonants)
 
 #10. Find the folders you have in your madrid-oct-2018 local repo. Use files as name of the list.  
 # You will probably need to import os library and some of its modules. You will need to make some online research.
 # Remember to use list comprehensions and to print your results.
 
-
+files = []
+for i in os.listdir('/Users/mariafont1/Documents/IronHack/madrid-oct-2018'):
+    files.append(i)
+print(type(files))
+print(files)
 
 #11. Create 4 lists of 10 random numbers between 0 and 100 each. Use random_lists as the name of the list. 
 #You will probably need to import random module
