@@ -10,6 +10,7 @@ print(my_listComprehension)
 
 import math
 import os 
+import random
 
 #1. Calculate the square number of the first 20 numbers. Use square as the name of the list.
 # Remember to use list comprehensions and to print your results
@@ -132,25 +133,29 @@ print(files_belen)
 #You will probably need to import random module
 # Remember to use list comprehensions and to print your results
 
+x = random.sample(range(0,101),10)
 
-
+random_list = []
+for i in range(4):
+    random_list.append(x)
+    
+print(random_list)
 
 #12. Flatten the following list of lists. Use flatten_list as the name of the output.
 # Remember to use list comprehensions and to print your results
 
-list_of_lists = [[1,2,3],[4,5,6],[7,8,9]]
-
-
+list_of_lists = [[1,2,3], [4,5,6], [7,8,9]]
+flatten_list = [y for x in list_of_lists for y in x]
+print(flatten_list)
 
 #13. Convert the numbers of the following nested list to floats. Use floats as the name of the list. 
 # Remember to use list comprehensions and to print your results.
 
-list_of_lists = [['40', '20', '10', '30'], ['20', '20', '20', '20', '20', '30', '20'], \
+list_of_lists1 = [['40', '20', '10', '30'], ['20', '20', '20', '20', '20', '30', '20'], \
 ['30', '20', '30', '50', '10', '30', '20', '20', '20'], ['100', '100'], ['100', '100', '100', '100', '100'], \
 ['100', '100', '100', '100']]
-
-
-
+floats = [float(y) for x in list_of_lists1 for y in x]
+print(floats)
 
 #14. Handle the exception thrown by the code below by using try and except blocks. 
 
