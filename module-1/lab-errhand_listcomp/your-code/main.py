@@ -64,6 +64,19 @@ teststring2 = 'The Quick Brown Fox Jumped Over The Lazy Dog'
 capital_letters = [i for i in teststring2 if i in 'TQBFJOTLD']
 print(capital_letters)
 
+# Soluciones en clase
+
+'''
+import string
+capital_letters_belen = [i for i in teststring2 if i in string.ascii_uppercase]
+print(capital_letters_belen)
+'''
+
+'''
+capital_letters_belen2 = [i for i in teststring2 if i.isupper()]
+print(capital_letters_belen2)
+'''
+
 #9. Find all the consonants in the sentence 'The quick brown fox jumped over the lazy dog'.
 # Use consonants as the name of the list.
 # Remember to use list comprehensions and to print your results.
@@ -71,6 +84,22 @@ print(capital_letters)
 teststring3 = 'The quick brown fox jumped over the lazy dog'
 consonants = ''.join([i for i in teststring3 if i in 'bcdfghjklmnpqrstvwxyzT'])
 print(consonants)
+
+# Soluciones en clase
+
+'''
+vowels = ['a','e','i','o','u']
+consonants_belen = [i for i in teststring3 if i not in vowels]
+print(consonants_belen)
+'''
+
+'''
+consonants_belen2 = []
+for i in teststring3:
+    if i.lower() not in vowels:
+        consonants_belen2.append(i)
+print(consonants_belen2)
+'''
 
 #10. Find the folders you have in your madrid-oct-2018 local repo. Use files as name of the list.  
 # You will probably need to import os library and some of its modules. You will need to make some online research.
@@ -81,6 +110,23 @@ for i in os.listdir('/Users/mariafont1/Documents/IronHack/madrid-oct-2018'):
     files.append(i)
 print(type(files))
 print(files)
+
+# Soluciones en clase
+
+'''
+El corchete del final funciona como un indice:
+- el 1 agarra folders 
+- el 2 agarra ficheros
+- el 0 es medio useless 
+- el next es importante aqui si no no funciona el os.walk ya que lo convierte en iterador
+El my path, si esta en el mismo folder que en el que estoy trabajando, se puede poner asi:
+'../madrid-oct-2018'
+
+
+mypath = '/Users/mariafont1/Documents/IronHack/madrid-oct-2018'
+files_belen = [i for i in next(os.walk(mypath))[1]]
+print(files_belen)
+'''
 
 #11. Create 4 lists of 10 random numbers between 0 and 100 each. Use random_lists as the name of the list. 
 #You will probably need to import random module
@@ -182,8 +228,11 @@ def linux_interaction():
 # 22. Find all of the numbers from 1-1000 that are divisible by any single digit besides 1 (2-9). 
 # Use results as the name of the list 
 
-
-
+#Solucion en Clase
+'''
+results = [number for number in range(1,1001) if True in [True for divisor in range (2,10) if number % divisor == 0]]
+print(results)
+'''
 
 # 23. Define a customised exception to handle not accepted values. 
 # You have the following user inputs and the Num_of_sections can not be less than 2.
