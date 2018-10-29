@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 # Step 1: Acquisition
 def acquire():
@@ -13,7 +14,7 @@ def wrangle(data, year):
 
 # Step 3: Analysis
 def analyze(filtered):
-    grouped_region = data.groupby('Region')
+    grouped_region = filtered.groupby('Region')
     mean_region = grouped_region.agg({'GDP ($ per capita)':'mean'}).reset_index()
     results_region = mean_region.sort_values('GDP ($ per capita)', ascending=False).head(3)
     return results_region
@@ -24,7 +25,8 @@ def reporting(gdpregions, title):
     barchart = sns.barplot(data=gdpregions, x='Region', y='GDP ($ per capita)')
     plt.title(title + "\n", fontsize=16)
     fig = barchart.get_figure()
-    fig.savefig(title + '.png')
+    root = os.path.join('./Output', title)
+    fig.savefig(root + '.png')
 
 if __name__ == '__main__':
     year = int(input('Enter the year: '))
